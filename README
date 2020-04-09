@@ -13,3 +13,7 @@ How to use GitHub with Atom
 12 - Create or select the branch where the commit is pushed
 13 - Click on publish
 14 - Fetch and pull to update the local Repository
+
+
+DJANGO cmdline
+- django-admin startproject mysite
