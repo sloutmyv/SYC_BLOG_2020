@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse
 
 from .forms import PostModelForm
 from .models import Post
@@ -36,5 +37,12 @@ class PostUpdateView(UpdateView):
         slug_ = self.kwargs.get("slug")
         return get_object_or_404(Post, slug=slug_)
 
-def posts_delete(request):
-    return HttpResponse("<h1>delete</h1>")
+class PostDeleteView(DeleteView):
+    template_name = "posts/post_delete.html"
+
+    def get_object(self):
+        slug_ = self.kwargs.get("slug")
+        return get_object_or_404(Post, slug=slug_)
+
+    def get_success_url(self):
+        return reverse('posts:posts-list')
