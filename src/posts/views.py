@@ -8,7 +8,7 @@ def posts_detail(request):
     return HttpResponse("<h1>Detail</h1>")
 
 def posts_list(request):
-    return HttpResponse("<h1>List</h1>")
+    return render(request, "base.html", {})
 
 def posts_update(request):
     return HttpResponse("<h1>update</h1>")
