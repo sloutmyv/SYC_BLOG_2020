@@ -1,11 +1,15 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
+
+from .forms import PostModelForm
 from .models import Post
 
-def posts_create(request):
-    return HttpResponse("<h1>Create</h1>")
+
+class PostCreateView(CreateView):
+    template_name = "posts/post_create.html"
+    form_class = PostModelForm
 
 class PostDetailView(DetailView):
     template_name = "posts/post_detail.html"
@@ -24,8 +28,13 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-def posts_update(request):
-    return HttpResponse("<h1>update</h1>")
+class PostUpdateView(UpdateView):
+    template_name = "posts/post_create.html"
+    form_class = PostModelForm
+
+    def get_object(self):
+        slug_ = self.kwargs.get("slug")
+        return get_object_or_404(Post, slug=slug_)
 
 def posts_delete(request):
     return HttpResponse("<h1>delete</h1>")

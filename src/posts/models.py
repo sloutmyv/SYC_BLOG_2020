@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save                                   # pour la création des signaux
+from django.urls import reverse
 from .utils import unique_slug_generator                                        # Slug generator
 
 
@@ -12,7 +13,10 @@ class Post(models.Model):
 
     def __str__(self):                                                          # python 3
         return self.title
-        
+
+    def get_absolute_url(self):
+        return reverse("posts:post-detail", kwargs={"slug": self.slug})
+
 ### Signals de création des slugs
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
