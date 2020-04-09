@@ -1,0 +1,15 @@
+How to use GitHub with Atom
+1 - Create a GitHub Account
+2 - Create a Repository
+3 - Copy .git link
+4 - Paste it in Crtl+Shit+p GitHub:Clone
+5 - Authorize GitHub for Atom on github.atom.io/login
+6 - Copy token and paste it in github tab (bottom right)
+7 - Make your code
+8 - Go to git tab (up right)
+9 - You can Stage All to push up every file or make one at a time (right click and stage)
+10 - Write commit comment
+11 - Then press create detached commit
+12 - Create or select the branch where the commit is pushed
+13 - Click on publish
+14 - Fetch and pull to update the local Repository
