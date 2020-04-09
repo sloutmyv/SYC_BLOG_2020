@@ -6,12 +6,17 @@
   </head>
   <body>
       <h1>{{ title }} is working!</h1>
-      {% for obj in object_list %}
+      {% for post in object_list %}
+        <li>{{ post.title }} - {{ post.timestamp }}</li>
+      {% empty %}
+        <li>No posts yet !</li>
+      {% endfor %}
+      <!-- {% for obj in object_list %}
         {{ obj.title }}<br>
         {{ obj.updated }}<br>
         {{ obj.timestamp }}<br>
         {{ obj.content }}<br>
         <br>
-      {% endfor%}
+      {% endfor%} -->
   </body>
 </html>
