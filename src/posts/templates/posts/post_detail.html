@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ block.super }} | lists of posts {% endblock head_title %}
+  <body>
+    {% block content %}
+      <h1>{{ object.title}}</h1>
+      <br>
+      <p> {{ object.content }}</p>
+      <p> Published : {{ object.timestamp }}</p>
+      <p> Updated : {{ object.update }}</p>
+    {% endblock content %}
+  </body>
