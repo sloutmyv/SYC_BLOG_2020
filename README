@@ -16,5 +16,8 @@ How to use GitHub with Atom
 
 
 DJANGO cmdline
+- pip install Django==3.0.5
 - django-admin startproject mysite
 - python manage.py runserver (in project dir)
+- python manage.py migrate
+- python manage.py createsuperuser
