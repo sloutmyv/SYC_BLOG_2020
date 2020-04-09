@@ -13,7 +13,7 @@ def posts_detail(request):
     return render(request, "base.html", context)
 
 class PostListView(ListView):
-    template_name = "base.html"
+    template_name = "posts/posts_list.html"
     model = Post
     paginate_by = 10
 

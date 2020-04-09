@@ -2,21 +2,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+     <title>{% block head_title %} SYC Blog {% endblock head_title %}</title>
   </head>
   <body>
-      <h1>{{ title }} is working!</h1>
-      {% for post in object_list %}
-        <li>{{ post.title }} - {{ post.timestamp }}</li>
-      {% empty %}
-        <li>No posts yet !</li>
-      {% endfor %}
-      <!-- {% for obj in object_list %}
-        {{ obj.title }}<br>
-        {{ obj.updated }}<br>
-        {{ obj.timestamp }}<br>
-        {{ obj.content }}<br>
-        <br>
-      {% endfor%} -->
+    {% block content %}
+    {% endblock content %}
   </body>
 </html>
