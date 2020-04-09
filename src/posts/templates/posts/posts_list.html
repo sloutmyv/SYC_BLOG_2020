@@ -3,9 +3,9 @@
 {% block head_title %} {{ block.super }} | lists of posts {% endblock head_title %}
   <body>
     {% block content %}
-      <h1>{{ title }} is working!</h1>
+      <h1>Blog is working!</h1>
         {% for post in object_list %}
-          <li>{{ post.title }} - {{ post.timestamp }}</li>
+          <li><a href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a> | {{ post.timestamp }}</li>
         {% empty %}
           <li>No posts yet !</li>
         {% endfor %}
