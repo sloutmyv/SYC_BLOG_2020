@@ -2,8 +2,14 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save                                   # pour la création des signaux
 from django.urls import reverse
+from django.utils import timezone
 from .utils import unique_slug_generator                                        # Slug generator
 
+# Modifying Post.objects.all()
+class PostManager(models.Manager):
+    def active(self, *args, **kwargs):
+        return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+        # return super(PostManager, self).filter(user=request.user)
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
@@ -15,6 +21,8 @@ class Post(models.Model):
 
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
+
+    objects = PostManager() # could call it another way but Post.objets.all()
 
     def __str__(self):                                                          # python 3
         return self.title

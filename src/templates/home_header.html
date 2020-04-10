@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-12" align="center">
       {% if user.is_authenticated %}
-        <p> Welcome '{{ user.username }}'</p>
+        <p> Welcome {{ user.username }}</p>
       {% endif %}
     </div>
   </div>

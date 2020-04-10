@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
+from django.utils import timezone
 
 
 from .forms import PostModelForm
@@ -26,11 +27,15 @@ class PostDetailView(DetailView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
+        if self.object.draft or self.object.publish > timezone.now().date():
+            if self.request.user != self.object.user:
+                raise Http404
         return context
 
 class PostListView(ListView):
     template_name = "posts/posts_list.html"
     model = Post
+    queryset = Post.objects.active()
     ordering = ['-timestamp']
     paginate_by = 5
 
