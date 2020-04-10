@@ -4,6 +4,11 @@
   <body>
     {% block content %}
       <h1>Blog is working!</h1>
+        {% if user.is_authenticated %}
+          <a href="{% url 'posts-app:post-create' %}">Create a new post</a><br>
+          <br>
+        {% endif %}
+
         {% for post in object_list %}
           <li><a href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a> | {{ post.timestamp }}</li>
         {% empty %}

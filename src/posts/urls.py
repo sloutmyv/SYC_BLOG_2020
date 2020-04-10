@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.views.generic import TemplateView
 from django.urls import path
 from .views import (
     PostListView,
@@ -16,4 +17,5 @@ urlpatterns = [
     path('create/', PostCreateView.as_view(), name='post-create'),
     path('article/<slug:slug>/update/', PostUpdateView.as_view(), name='post-update'),
     path('article/<slug:slug>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('permissiondenied/', TemplateView.as_view(template_name="permissiondenied.html"), name="permission-denied"),
 ]

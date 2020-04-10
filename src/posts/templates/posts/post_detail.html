@@ -9,6 +9,13 @@
       <p> Published : {{ object.timestamp }}</p>
       <p> Updated : {{ object.updated }}</p>
 
+      {% if user.is_authenticated %}
+        <a href="{% url 'posts-app:post-update' slug=post.slug %}">Update this post</a><br>
+        <a href="{% url 'posts-app:post-delete' slug=post.slug %}">Delete this post</a><br>
+        <br>
+      {% endif %}
+
       <a href="{% url 'posts-app:posts-list' %}">Back to posts list</a>
+
     {% endblock content %}
   </body>
