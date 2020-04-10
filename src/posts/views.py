@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
@@ -36,11 +37,25 @@ class PostListView(ListView):
     template_name = "posts/posts_list.html"
     model = Post
     queryset = Post.objects.active()
+
     ordering = ['-timestamp']
     paginate_by = 5
 
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            queryset = super().get_queryset().filter(
+                        Q(title__icontains=query)|
+                        Q(content__icontains=query)
+                        ).distinct()
+        else:
+            queryset = super().get_queryset()
+        return queryset
+
+
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
+
         return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
