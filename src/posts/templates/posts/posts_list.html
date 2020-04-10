@@ -14,6 +14,9 @@
         <div class="container">
           <h1 class="display-4"><a href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a></h1>
           <p>By {{post.user}} on {{post.timestamp}}</p>
+          {% if post.draft %}
+            <span style='color:red;'>Draft</span>
+          {% endif %}
           <p class="lead">{{ post.content|linebreaks|truncatechars:120}}</p>
         </div>
       </div>
