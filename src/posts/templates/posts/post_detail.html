@@ -3,7 +3,7 @@
 {% block head_title %} {{ block.super }} | lists of posts {% endblock head_title %}
   <body>
     {% block content %}
-      <h1>{{ object.title}}</h1>
+      <h1>{{ object.title}}</h1><small>{{ object.user }}</small>
       <br>
       <p> {{ object.content }}</p>
       <p> Published : {{ object.timestamp }}</p>

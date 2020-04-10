@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
@@ -14,6 +14,11 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = "posts/post_create.html"
 
     form_class = PostModelForm
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(obj.get_absolute_url())
 
 class PostDetailView(DetailView):
     template_name = "posts/post_detail.html"
