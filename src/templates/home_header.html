@@ -12,4 +12,11 @@
       <a class="home-header-title" href="{% url 'posts-app:posts-list' %}">To Infinity And Beyond</a>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12" align="center">
+      {% if user.is_authenticated %}
+        <p> Welcome '{{ user.username }}'</p>
+      {% endif %}
+    </div>
+  </div>
 </header>

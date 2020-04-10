@@ -9,7 +9,8 @@
       <p> Published : {{ object.timestamp }}</p>
       <p> Updated : {{ object.updated }}</p>
 
-      {% if user.is_authenticated %}
+
+      {% if request.user == object.user  %}
         <a href="{% url 'posts-app:post-update' slug=post.slug %}">Update this post</a><br>
         <a href="{% url 'posts-app:post-delete' slug=post.slug %}">Delete this post</a><br>
         <br>
