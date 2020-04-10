@@ -1,8 +1,10 @@
 <!--DOCTYPE html-->
+{% load static %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
      <title>{% block head_title %} SYC Blog {% endblock head_title %}</title>
+     <link rel="stylesheet" href="{% static 'css/base.css'%}">
   </head>
   <body>
     {% block content %}
