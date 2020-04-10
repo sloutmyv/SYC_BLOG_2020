@@ -13,6 +13,10 @@ a.home-footer-link, a.home-footer-link:link, a.home-footer-link:visited {
 }
 .text-muted{font-size: 0.8rem;}
 
+.pagination_syc{
+  text-align: center;
+}
+
 
 /* MEDIA QUERIES TAGS */
 /* Extra small devices (portrait phones, less than 576px) */
