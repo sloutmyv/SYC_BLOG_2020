@@ -1,0 +1,15 @@
+{% load static %}
+<header class="home-header">
+  <div class="row">
+    <div class="col-12" align="center">
+      <a href="{% url 'posts-app:posts-list' %}">
+        <img class="img-fluid" src="{% static 'img/header_img.jpg' %}" alt="header-img">
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" align="center">
+      <a class="home-header-title" href="{% url 'posts-app:posts-list' %}">To Infinity And Beyond</a>
+    </div>
+  </div>
+</header>
