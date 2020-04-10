@@ -10,7 +10,13 @@
       {% endif %}
 
       {% for post in object_list %}
-        <li><a href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a> | {{ post.timestamp }}</li>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4"><a href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a></h1>
+          <p>{{post.timestamp}}</p>
+          <p class="lead">{{ post.content|linebreaks|truncatechars:120}}</p>
+        </div>
+      </div>
       {% empty %}
         <li>No posts yet !</li>
       {% endfor %}
