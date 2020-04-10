@@ -3,9 +3,16 @@ header {
     font-family: 'Shadows Into Light', cursive;
 }
 
-a.home-header-title, a.home-header-title:link, a.home-header-title:visited {
+a.home-header-title, a.home-header-title:link, a.home-header-title:visited{
   color: #000000;
 }
+
+/* home_footer */
+a.home-footer-link, a.home-footer-link:link, a.home-footer-link:visited {
+  color: #000000;
+}
+.text-muted{font-size: 0.8rem;}
+
 
 /* MEDIA QUERIES TAGS */
 /* Extra small devices (portrait phones, less than 576px) */

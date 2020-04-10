@@ -2,3 +2,36 @@
 header {
     font-family: 'Shadows Into Light', cursive;
 }
+
+a.home-header-title, a.home-header-title:link, a.home-header-title:visited,
+a.home-footer-link, a.home-footer-link:link, a.home-footer-link:visited,
+{
+  color: #000000;
+}
+
+/* MEDIA QUERIES TAGS */
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px){
+/* home_header */
+.home-header-title{font-size: 3rem;}
+}
+/* Small devices (sm) (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+/* home_header */
+.home-header-title{font-size: 3rem;}
+}
+/* Medium devices (md) (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+/* home_header */
+.home-header-title{font-size: 3rem;}
+}
+/* Large devices (lg) (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+/* home_header */
+.home-header-title{font-size: 3rem;}
+}
+/* Extra large devices (xl) (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+/* home_header */
+.home-header-title{font-size: 3rem;}
+}
