@@ -9,21 +9,14 @@
   </div>
   <div class="row">
     <div class="col-12" align="center">
-      <a class="home-header-title" href="{% url 'posts-app:posts-list' %}">To Infinity And Beyond</a>
+      <a class="home-header-title shadowsintolight-text" href="{% url 'posts-app:posts-list' %}">To Infinity And Beyond</a>
     </div>
   </div>
-  <div class="row">
+  <div class="row titillium-text">
     <div class="col-12" align="center">
       {% if user.is_authenticated %}
-        <p> Welcome {{ user.username }}</p>
+        <p> Welcome <a class="link-in-black" href="#">{{ user.username }}</a> </p>
       {% endif %}
     </div>
   </div>
-
-  <!-- Search form -->
-<form method='GET' action='' class="form-inline">
-  <i class="fas fa-search" aria-hidden="true"></i>
-  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-    aria-label="Search" name='q' value='{{request.GET.q}}'>
-</form>
 </header>

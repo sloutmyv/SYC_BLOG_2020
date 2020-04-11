@@ -1,19 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block head_title %} {{ block.super }} | Home {% endblock head_title %}
   <body>
     {% block content %}
-
-      {% if user.is_authenticated %}
-        <a href="{% url 'posts-app:post-create' %}">Create a new post</a><br>
-        <br>
-      {% endif %}
-
       {% for post in object_list %}
-      <div class="jumbotron jumbotron-fluid">
+      <div class="jumbotron jumbotron-fluid titillium-text">
         <div class="container">
-          <h1 class="display-4"><a href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a></h1>
-          <p>By {{post.user}} on {{post.timestamp}}</p>
+          <h1 class="display-4">
+            <a class="titillium-text posts-list-title" href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a>
+          </h1>
+          <p class='jumbotron-author-date'>By <a class="link-in-black" href="#">{{post.user}}</a> le {{post.timestamp|date:"d/m/y"}}</p>
           {% if post.draft %}
             <span style='color:red;'>Draft</span>
           {% endif %}
