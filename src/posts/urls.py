@@ -14,6 +14,7 @@ app_name = 'posts'
 urlpatterns = [
     path('',PostListView.as_view(), name='posts-list'),
     path('author/(?P<author>[\w-]+)/',PostListView.as_view(), name='posts-list-author'),
+    path('privatespace/(?P<privatespace>[\w-]+)/',PostListView.as_view(), name='posts-list-privateauthorspace'),
     path('article/<slug:slug>/',PostDetailView.as_view(), name='post-detail'),
     path('create/', PostCreateView.as_view(), name='post-create'),
     path('article/<slug:slug>/update/', PostUpdateView.as_view(), name='post-update'),

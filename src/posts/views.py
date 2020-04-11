@@ -46,14 +46,17 @@ class PostListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get("q")
         author = self.kwargs.get('author')
+        private_space = self.kwargs.get('privatespace')
+        print(author, private_space)
         if query:
             queryset = super().get_queryset().filter(
                         Q(title__icontains=query)|
                         Q(content__icontains=query)
                         ).distinct()
-        if author is not None and str(author) == str(self.request.user):
-            queryset = Post.objects.ofuser(str(author))
-            # queryset = super().get_queryset().filter(user__username__iexact=str(author))
+        elif author is not None:
+            queryset = super().get_queryset().filter(user__username__iexact=str(author))
+        elif private_space is not None and str(private_space) == str(self.request.user):
+            queryset = Post.objects.ofuser(str(private_space))
         else:
             queryset = super().get_queryset()
 

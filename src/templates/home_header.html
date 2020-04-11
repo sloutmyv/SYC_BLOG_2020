@@ -15,7 +15,7 @@
   <div class="row titillium-text">
     <div class="col-12" align="center">
       {% if user.is_authenticated %}
-        <p> Welcome <a href="{% url 'posts-app:posts-list-author' author=user.username %}">{{ user.username }}</a></p>
+        <p> Welcome <a href="{% url 'posts-app:posts-list-privateauthorspace' privatespace=user.username %}">{{ user.username }}</a></p>
 
       {% endif %}
     </div>
