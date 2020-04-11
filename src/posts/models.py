@@ -11,6 +11,9 @@ class PostManager(models.Manager):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
         # return super(PostManager, self).filter(user=request.user)
 
+    def ofuser(self, auteur, *args, **kwargs):
+        return super(PostManager, self).filter(user__username__iexact=auteur)
+
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)

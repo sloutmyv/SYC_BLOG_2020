@@ -37,25 +37,31 @@ class PostListView(ListView):
     template_name = "posts/posts_list.html"
     model = Post
     queryset = Post.objects.active()
+    print("1" + str(queryset))
+
 
     ordering = ['-timestamp']
     paginate_by = 5
 
     def get_queryset(self):
         query = self.request.GET.get("q")
+        author = self.kwargs.get('author')
         if query:
             queryset = super().get_queryset().filter(
                         Q(title__icontains=query)|
                         Q(content__icontains=query)
                         ).distinct()
+        if author is not None and str(author) == str(self.request.user):
+            queryset = Post.objects.ofuser(str(author))
+            # queryset = super().get_queryset().filter(user__username__iexact=str(author))
         else:
             queryset = super().get_queryset()
+
         return queryset
 
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-
         return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
