@@ -3,20 +3,35 @@
 {% block head_title %} {{ block.super }} | lists of posts {% endblock head_title %}
   <body>
     {% block content %}
-      <h1>{{ object.title}}</h1><small>{{ object.user }}</small>
-      <br>
-      <p> {{ object.content }}</p>
-      <p> Published : {{ object.timestamp }}</p>
-      <p> Updated : {{ object.updated }}</p>
+      <div class="jumbotron jumbotron-fluid titillium-text">
+        <div class="container">
+          <div class="row justify-content-md-center">
+            {% if request.user == object.user  %}
+              <a href="{% url 'posts-app:post-update' slug=post.slug %}">
+                <button type="button" class="btn btn-light">Update</button>
+              </a>
+              &nbsp;
+              <a href="{% url 'posts-app:post-delete' slug=post.slug %}">
+                <button type="button" class="btn btn-light">Delete</button>
+              </a>
+              &nbsp;
+            {% endif %}
+            <a href="{% url 'posts-app:posts-list' %}">
+              <button type="button" class="btn btn-light">Back to post lists</button>
+            </a>
+          </div>
+          </br>
+          <div class="row justify-content-md-center">
+            <h1 class="display-4">{{ object.title }}</h1>
+          </div>
+          <p class='jumbotron-author-date'>By <a class="link-in-purple" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
+          {% if post.draft %}
+            <span style='color:red;'>Draft</span>
+          {% endif %}
+          <p class="lead">{{ object.content|linebreaks}}</p>
+        </div>
+      </div>
 
-
-      {% if request.user == object.user  %}
-        <a href="{% url 'posts-app:post-update' slug=post.slug %}">Update this post</a><br>
-        <a href="{% url 'posts-app:post-delete' slug=post.slug %}">Delete this post</a><br>
-        <br>
-      {% endif %}
-
-      <a href="{% url 'posts-app:posts-list' %}">Back to posts list</a>
 
     {% endblock content %}
   </body>

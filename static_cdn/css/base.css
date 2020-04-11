@@ -7,8 +7,13 @@
 /* Size */
   /* home_header */
     .home-header-title{font-size: 3rem;}
+  /* home_navbar */
+    .nav-font, .navbar-brand{font-size: 1rem;}
+
+
   /* posts_list */
     .posts-list-title{font-size: 2rem;}
+    .jumbotron-author-date{font-size: 0.8rem;}
   /* home_footer */
     .text-muted{font-size: 0.8rem;}
 
@@ -16,7 +21,12 @@
   /* home_header */
     a.home-header-title, a.home-header-title:link, a.home-header-title:visited{
     color: #000000;}
-    a.post-title-link, a.post-title-link:link, a.post-title-link:visited{
+  /* posts_list */
+    a.link-in-black, a.link-in-black:link, a.link-in-black:visited{
+    color: #000000;}
+    a.link-in-purple,, a.link-in-purple:link, a.link-in-purple:visited{
+    color: #33334d;}
+    a.posts-list-title, a.posts-list-title:link, a.posts-list-title:visited{
     color: #000000;}
   /* home_footer */
     a.home-footer-link, a.home-footer-link:link, a.home-footer-link:visited {
@@ -24,11 +34,19 @@
 
 
 /* Position */
+  /* home_navbar */
+  .nav-position{
+    align-items: center;
+    display: flex;}
+  .navbar {
+      padding: .5rem;}
+
+
   /* posts_list */
     .pagination_syc{text-align: center;}
     .jumbotron{
       margin-bottom: 0.5rem;
-      background-color: #fff;
+      background-color: #ebf0fa;
       padding: 0.5rem;}
 
 
