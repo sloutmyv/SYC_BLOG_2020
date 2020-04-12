@@ -6,7 +6,7 @@
     {% block content %}
       {% for post in object_list %}
       <div class="jumbotron jumbotron-fluid titillium-text">
-        <div class="container">
+        <div class="container post-detail-item">
           <h1 class="display-4">
             <a class="titillium-text posts-list-title" href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a>
           </h1>
@@ -14,7 +14,7 @@
           {% if post.draft %}
             <span style='color:red;'>Draft</span>
           {% endif %}
-          <p class="lead content-markdown">{{ post.content|truncatechars:50}}</p>
+          <p class="lead">{{ post.get_markdown|truncatechars_html:50 }}</p>
         </div>
       </div>
       {% empty %}

@@ -4,7 +4,7 @@
   <body>
     {% block content %}
       <div class="jumbotron jumbotron-fluid titillium-text">
-        <div class="container">
+        <div class="container post-detail-item">
           <div class="row justify-content-md-center">
             {% if request.user == object.user  %}
               <a href="{% url 'posts-app:post-update' slug=post.slug %}">
@@ -28,7 +28,7 @@
           {% if post.draft %}
             <span style='color:red;'>Draft</span>
           {% endif %}
-          <p class="lead content-markdown">{{ object.content}}</p>
+          <p class="lead">{{ post.get_markdown }}</p>
         </div>
       </div>
 
