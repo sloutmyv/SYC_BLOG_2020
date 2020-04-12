@@ -37,7 +37,6 @@ class PostListView(ListView):
     template_name = "posts/posts_list.html"
     model = Post
     queryset = Post.objects.active()
-    print("1" + str(queryset))
 
 
     ordering = ['-timestamp']
@@ -47,7 +46,6 @@ class PostListView(ListView):
         query = self.request.GET.get("q")
         author = self.kwargs.get('author')
         private_space = self.kwargs.get('privatespace')
-        print(author, private_space)
         if query:
             queryset = super().get_queryset().filter(
                         Q(title__icontains=query)|

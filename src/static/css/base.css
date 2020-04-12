@@ -53,7 +53,14 @@
     display: flex;}
   .navbar {
       padding: .5rem;}
-
+  /* home_create */
+  .wmd-panel {
+      margin-left: 0px !important ;
+      margin-right: 0px !important ;
+  }
+  .wmd-panel {
+    width: 100% !important;
+  }
 
   /* posts_list */
     .pagination_syc{text-align: center;}
