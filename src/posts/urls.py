@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.views.generic import TemplateView
-from django.urls import path
+from django.urls import path, re_path
 from .views import (
     PostListView,
     PostDetailView,
@@ -13,8 +13,8 @@ app_name = 'posts'
 
 urlpatterns = [
     path('',PostListView.as_view(), name='posts-list'),
-    path('author/(?P<author>[\w-]+)/',PostListView.as_view(), name='posts-list-author'),
-    path('privatespace/(?P<privatespace>[\w-]+)/',PostListView.as_view(), name='posts-list-privateauthorspace'),
+    re_path('author/(?P<author>[\w-]+)/$',PostListView.as_view(), name='posts-list-author'),
+    re_path('privatespace/(?P<privatespace>[\w-]+)/$',PostListView.as_view(), name='posts-list-privateauthorspace'),
     path('article/<slug:slug>/',PostDetailView.as_view(), name='post-detail'),
     path('create/', PostCreateView.as_view(), name='post-create'),
     path('article/<slug:slug>/update/', PostUpdateView.as_view(), name='post-update'),
