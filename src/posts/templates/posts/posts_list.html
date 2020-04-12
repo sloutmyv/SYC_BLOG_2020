@@ -14,7 +14,7 @@
           {% if post.draft %}
             <span style='color:red;'>Draft</span>
           {% endif %}
-          <p class="lead">{{ post.content|linebreaks|truncatechars:120}}</p>
+          <p class="lead content-markdown">{{ post.content|truncatechars:50}}</p>
         </div>
       </div>
       {% empty %}
