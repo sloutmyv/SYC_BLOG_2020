@@ -10,6 +10,11 @@
           <h1 class="display-4">
             <a class="titillium-text posts-list-title" href="{% url 'posts-app:post-detail' slug=post.slug %}">{{ post.title }}</a>
           </h1>
+          <div class="row">
+            {% for tag in post.tags.all %}
+              <a href="#" class="mr-1 badge badge-info">{{ tag }}</a>
+            {% endfor %}
+          </div>
           <p class='jumbotron-author-date'>By <a class="link-in-purple" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{post.user}}</b></a> le {{post.timestamp|date:"d/m/y"}}</p>
           {% if post.draft %}
             <span style='color:red;'>Draft</span>

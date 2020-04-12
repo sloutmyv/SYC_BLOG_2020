@@ -24,6 +24,11 @@
           <div class="row justify-content-md-center">
             <h1 class="display-4">{{ object.title }}</h1>
           </div>
+          <div class="row">
+            {% for tag in object.tags.all %}
+              <a href="#" class="mr-1 badge badge-info">{{ tag }}</a>
+            {% endfor %}
+          </div>
           <p class='jumbotron-author-date'>By <a class="link-in-purple" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
           {% if post.draft %}
             <span style='color:red;'>Draft</span>

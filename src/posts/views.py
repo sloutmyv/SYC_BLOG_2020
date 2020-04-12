@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.utils import timezone
+from taggit.models import Tag
 
 
 from .forms import PostModelForm

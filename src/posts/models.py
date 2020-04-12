@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from .utils import unique_slug_generator      # Slug generator
 from markdown_deux import markdown
+from taggit.managers import TaggableManager
 
 
 # Modifying Post.objects.all()
@@ -24,6 +25,7 @@ class Post(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)         # everytime
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)           # initialy
+    tags = TaggableManager()
 
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
