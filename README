@@ -26,7 +26,11 @@ DJANGO cmdline
 
 
 A faire
-- popularité des tags
+- Nombre d'article publié
+- Tri des articles par date de publication
+- popularité des tags / classement par ordre alphabétique / Catégories ?
+- Mise en forme de l'admin
+- Test du form
 - Front du form
 - ecrire le premier article
 - voir comment mettre en ligne

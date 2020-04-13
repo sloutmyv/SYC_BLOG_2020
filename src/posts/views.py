@@ -50,7 +50,6 @@ class PostListView(ListView):
         author = self.kwargs.get('author')
         private_space = self.kwargs.get('privatespace')
         tag = self.kwargs.get('tag_url')
-        print(tag)
 
         if query:
             queryset = super().get_queryset().filter(
@@ -71,6 +70,8 @@ class PostListView(ListView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
+        context['nb_post_published'] = Post.objects.active().count()
+        print(context)
         return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):

@@ -4,6 +4,9 @@
 {% block head_title %} {{ block.super }} | Home {% endblock head_title %}
   <body>
     {% block content %}
+      <div class="container text-center">
+        <span class="text-muted"> Nombre d'articles : {{ nb_post_published }} </span>
+      </div>
       {% for post in object_list %}
       <div class="jumbotron jumbotron-fluid titillium-text">
         <div class="container post-detail-item">
