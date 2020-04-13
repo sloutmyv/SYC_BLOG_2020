@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse
 from django.utils import timezone
 from taggit.models import Tag
@@ -103,3 +103,12 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
             return HttpResponseRedirect(success_url)
         else:
             return HttpResponseForbidden("Cannot delete other's posts")
+
+class TagsView(TemplateView):
+    template_name = "posts/tags_page.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(TagsView, self).get_context_data(*args, **kwargs)
+        context['tags'] = Tag.objects.all()
+        print(context)
+        return context

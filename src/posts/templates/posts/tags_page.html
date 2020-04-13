@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ block.super }} | lists of posts {% endblock head_title %}
+  <body>
+    {% block content %}
+      <h1>All tags</h1>
+      {% for tag in tags %}
+        <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
+      {% endfor %}
+    {% endblock content %}
+  </body>
