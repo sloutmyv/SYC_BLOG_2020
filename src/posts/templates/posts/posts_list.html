@@ -12,7 +12,7 @@
           </h1>
           <div class="row">
             {% for tag in post.tags.all %}
-              <a href="#" class="mr-1 badge badge-info">{{ tag }}</a>
+              <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
             {% endfor %}
           </div>
           <p class='jumbotron-author-date'>By <a class="link-in-purple" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{post.user}}</b></a> le {{post.timestamp|date:"d/m/y"}}</p>

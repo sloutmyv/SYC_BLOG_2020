@@ -15,6 +15,7 @@ urlpatterns = [
     path('',PostListView.as_view(), name='posts-list'),
     re_path('author/(?P<author>[\w-]+)/$',PostListView.as_view(), name='posts-list-author'),
     re_path('privatespace/(?P<privatespace>[\w-]+)/$',PostListView.as_view(), name='posts-list-privateauthorspace'),
+    re_path('sort_by_tag/(?P<tag_url>[\w-]+)/$',PostListView.as_view(), name='posts-list-bytag'),
     path('article/<slug:slug>/',PostDetailView.as_view(), name='post-detail'),
     path('create/', PostCreateView.as_view(), name='post-create'),
     path('article/<slug:slug>/update/', PostUpdateView.as_view(), name='post-update'),

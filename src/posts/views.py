@@ -27,11 +27,13 @@ class PostDetailView(DetailView):
     template_name = "posts/post_detail.html"
     model = Post
 
+
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         if self.object.draft or self.object.publish > timezone.now().date():
             if self.request.user != self.object.user:
                 raise Http404
+        print(self.object.tags.all())
         return context
 
 class PostListView(ListView):
@@ -47,6 +49,9 @@ class PostListView(ListView):
         query = self.request.GET.get("q")
         author = self.kwargs.get('author')
         private_space = self.kwargs.get('privatespace')
+        tag = self.kwargs.get('tag_url')
+        print(tag)
+
         if query:
             queryset = super().get_queryset().filter(
                         Q(title__icontains=query)|
@@ -56,6 +61,8 @@ class PostListView(ListView):
             queryset = super().get_queryset().filter(user__username__iexact=str(author))
         elif private_space is not None and str(private_space) == str(self.request.user):
             queryset = Post.objects.ofuser(str(private_space))
+        elif tag is not None:
+            queryset = super().get_queryset().filter(tags__name__iexact=tag)
         else:
             queryset = super().get_queryset()
 
