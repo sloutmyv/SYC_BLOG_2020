@@ -21,6 +21,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.save()
+        form.save_m2m()
         return HttpResponseRedirect(obj.get_absolute_url())
 
 class PostDetailView(DetailView):
@@ -33,7 +34,6 @@ class PostDetailView(DetailView):
         if self.object.draft or self.object.publish > timezone.now().date():
             if self.request.user != self.object.user:
                 raise Http404
-        print(self.object.tags.all())
         return context
 
 class PostListView(ListView):
@@ -70,8 +70,7 @@ class PostListView(ListView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        context['nb_post_published'] = Post.objects.active().count()
-        print(context)
+        context['nb_post_published'] = self.get_queryset().count()
         return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):

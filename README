@@ -27,6 +27,7 @@ DJANGO cmdline
 
 A faire
 - Nombre d'article publié
+- Delete confirmation
 - Tri des articles par date de publication
 - popularité des tags / classement par ordre alphabétique / Catégories ?
 - Mise en forme de l'admin
