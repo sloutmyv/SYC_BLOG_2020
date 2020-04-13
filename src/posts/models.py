@@ -42,6 +42,7 @@ class Post(models.Model):
         content = self.content
         return mark_safe(markdown(content))
 
+
 ### Signals de création des slugs
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:

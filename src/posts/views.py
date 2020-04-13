@@ -109,6 +109,6 @@ class TagsView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(TagsView, self).get_context_data(*args, **kwargs)
-        context['tags'] = Tag.objects.all()
+        context['tags'] = Tag.objects.all().order_by('name')
         print(context)
         return context
