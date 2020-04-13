@@ -23,3 +23,10 @@ DJANGO cmdline
 - python manage.py makemigrations
 - python manage.py createsuperuser
 - python manage.py startapp myapp
+
+
+A faire
+- popularité des tags
+- Front du form
+- ecrire le premier article
+- voir comment mettre en ligne
