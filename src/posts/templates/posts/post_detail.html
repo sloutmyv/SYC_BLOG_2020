@@ -5,7 +5,7 @@
     {% block content %}
       <div class="jumbotron jumbotron-fluid titillium-text">
         <div class="container post-detail-item">
-          <div class="row justify-content-md-center">
+          <div class="row justify-content-center">
             {% if request.user == object.user  %}
               <a href="{% url 'posts-app:post-update' slug=post.slug %}">
                 <button type="button" class="btn btn-light">Update</button>
@@ -21,14 +21,15 @@
             </a>
           </div>
           </br>
-          <div class="row justify-content-md-center">
-            <h1 class="display-4">{{ object.title }}</h1>
+          <div class="row justify-content-center">
+            <h1 class="display-4 posts-list-title">{{ object.title }}</h1>
           </div>
-          <div class="row">
+          <div class="row justify-content-center">
             {% for tag in object.tags.all %}
               <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
             {% endfor %}
           </div>
+          </br>
           <p class='jumbotron-author-date'>By <a class="link-in-purple" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
           {% if post.draft %}
             <span style='color:red;'>Draft</span>
