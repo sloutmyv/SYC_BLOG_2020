@@ -4,8 +4,14 @@
   <body>
     {% block content %}
       <h1>All tags</h1>
-      {% for tag in tags %}
-        <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
+      {% for lettre in lettres%}
+       {{ lettre}}
+       {% for tag in tags %}
+        {% if tag|make_list|first == lettre %}
+          <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
+          {% endif %}
+        {% endfor %}
+      <br>
       {% endfor %}
     {% endblock content %}
   </body>

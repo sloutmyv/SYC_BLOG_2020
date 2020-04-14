@@ -110,5 +110,12 @@ class TagsView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(TagsView, self).get_context_data(*args, **kwargs)
         context['tags'] = Tag.objects.all().order_by('name')
-        print(context)
+        all_tags =Tag.objects.all().values()
+        liste_lettres = []
+        for i in all_tags:
+            if i['name'][0] not in liste_lettres:
+                liste_lettres.append(i['name'][0])
+            else:
+                pass
+        context['lettres'] = sorted(liste_lettres)
         return context
