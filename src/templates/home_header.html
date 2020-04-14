@@ -1,5 +1,12 @@
 {% load static %}
 <header class="home-header">
+  <div class="row titillium-font">
+    <div class="col-12" align="center">
+      {% if user.is_authenticated %}
+        <span> Welcome <a class="link-color-5" href="{% url 'posts-app:posts-list-privateauthorspace' privatespace=user.username %}"><b>{{ user.username }}</b></a></span>
+      {% endif %}
+    </div>
+  </div>
   <div class="row">
     <div class="col-12" align="center">
       <a href="{% url 'posts-app:posts-list' %}">
@@ -9,15 +16,12 @@
   </div>
   <div class="row">
     <div class="col-12" align="center">
-      <a class="home-header-title shadowsintolight-text" href="{% url 'posts-app:posts-list' %}">To Infinity And Beyond</a>
+      <a class="home-header-title shadowsintolight-font nounderline" href="{% url 'posts-app:posts-list' %}">To Infinity And Beyond</a>
     </div>
   </div>
-  <div class="row titillium-text">
+  <div class="row titillium-font">
     <div class="col-12" align="center">
-      {% if user.is_authenticated %}
-        <p> Welcome <a class="link-in-purple" href="{% url 'posts-app:posts-list-privateauthorspace' privatespace=user.username %}"><b>{{ user.username }}</b></a></p>
-
-      {% endif %}
+      <p class="home-header-subtitle">Voyager dans le monde des idées.</p>
     </div>
   </div>
 </header>

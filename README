@@ -26,12 +26,13 @@ DJANGO cmdline
 
 
 A faire
-- Nombre d'article publié
+- Mise en page / Identité visuelle / couleurs
+- Login / logout on main page ?
 - Delete confirmation
 - Tri des articles par date de publication
-- popularité des tags / classement par ordre alphabétique / Catégories ?
 - Mise en forme de l'admin
 - Test du form
 - Front du form
 - ecrire le premier article
+- Bitcoin
 - voir comment mettre en ligne
