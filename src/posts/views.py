@@ -118,4 +118,5 @@ class TagsView(TemplateView):
             else:
                 pass
         context['lettres'] = sorted(liste_lettres)
+        context['common_tags'] = Post.tags.most_common()[:10]
         return context

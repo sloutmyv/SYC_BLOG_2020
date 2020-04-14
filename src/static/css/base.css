@@ -9,11 +9,13 @@
     .home-header-title{font-size: 3rem;}
   /* home_navbar */
     .nav-font, .navbar-brand{font-size: 1rem;}
-
-
   /* posts_list */
-    .posts-list-title{font-size: 2rem;}
+    .posts-list-title{
+      font-size: 2rem;
+      font-weight: bold;}
     .jumbotron-author-date{font-size: 0.8rem;}
+  /* Tags_page*/
+    .tag-letter-sort{font-size: 1rem;}
   /* home_footer */
     .text-muted{font-size: 0.8rem;}
 
