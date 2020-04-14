@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block head_title %} {{ block.super }} | create a posts {% endblock head_title %}
+{% block head_title %} {{ block.super }} | Create a post {% endblock head_title %}
 
 {% block head_extra %}
  {{ form.media }}
 {% endblock head_extra %}
 
 {% block content %}
-<form action="." method="post">{% csrf_token %}
-  {{ form|crispy }}
-  <input type="submit" value="Save">
+<div class="container titillium-font">
+  <form action="." method="post">{% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Save">
   </form>
+</div>
 {% endblock content %}

@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
-{% block head_title %} {{ block.super }} | create a posts {% endblock head_title %}
+{% block head_title %} {{ block.super }} | Delete a post {% endblock head_title %}
 
 {% block content %}
-<form action="." method="post">{% csrf_token %}
-  <h1>Do you want to delete the post {{ object.title }}</h1>
-  <p><input type="submit" value="Yes"><a href="#"></a></p>
-  </form>
+<br>
+<div class="container titillium-font">
+  <div class="row justify-content-center">
+    <form action="." method="post">{% csrf_token %}
+      <h1 class="delete-confirmation">Do you want to delete the post : {{ object.title }} ?</h1>
+      <p class="justify-content-center">
+        <input class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="Yes">
+        <a href="{% url 'posts-app:post-detail' slug=slug %}"><button type="button" class="btn btn-outline-secondary my-2 my-sm-0">No</button></a>
+      </p>
+    </form>
+  </div>
+</div>
 {% endblock content %}

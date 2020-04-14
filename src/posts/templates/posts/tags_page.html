@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 
-{% block head_title %} {{ block.super }} | lists of posts {% endblock head_title %}
+{% block head_title %} {{ block.super }} | Tags {% endblock head_title %}
   <body>
     {% block content %}
-      <h1 class="posts-list-title">Most popular tags</h1>
+      <br>
+      <h1 class="tag-page-title titillium-font">10 Most common tags</h1>
       {% for common_tag in common_tags %}
         <a href="{% url 'posts-app:posts-list-bytag' tag_url=common_tag %}" class="mr-1 badge badge-info">{{ common_tag }} <span class="badge badge-light">{{ common_tag.num_times }}</span></a>
       {% endfor %}
       <hr>
-      <h1 class="posts-list-title">All tags</h1>
+      <h1 class="tag-page-title titillium-font">All tags</h1>
       {% for lettre in lettres%}
       <h3 class="tag-letter-sort">{{lettre|upper}}</h3>
       <div class="ml-2">
