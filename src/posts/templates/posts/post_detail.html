@@ -37,6 +37,10 @@
           </br>
           <p class='post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
           <p class="lead">{{ post.content|safe }}</p>
+          <div class="row justify-content-center">
+            <div class="fb-like" data-href="https://www.mysite.com" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
+            &nbsp;<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
         </div>
       </div>
 
