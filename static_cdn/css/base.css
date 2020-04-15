@@ -1,73 +1,93 @@
+/* Variables */
+:root{
+  --color-0:#fafcfd;
+  --color-1:#D6E8EE;
+  --color-2:#97CADB;
+  --color-3:#018ABE;
+  --color-4:#02457A;
+  --color-5:#001B48;
+}
+
 /* Fonts */
-  /* home_header */
-    .shadowsintolight-text {font-family: 'Shadows Into Light', cursive;}
-  /* posts_list */
-    .titillium-text{font-family: 'Titillium Web', sans-serif;}
+    .shadowsintolight-font {font-family: 'Shadows Into Light', cursive;}
+    .titillium-font{font-family: 'Titillium Web', sans-serif;}
+    .nounderline{text-decoration: none !important}
 
 /* Size */
   /* home_header */
     .home-header-title{font-size: 3rem;}
+    .home-header-subtitle{font-size: 1.2rem;}
   /* home_navbar */
     .nav-font, .navbar-brand{font-size: 1rem;}
-
-
   /* posts_list */
-    .posts-list-title{font-size: 2rem;}
-    .jumbotron-author-date{font-size: 0.8rem;}
+    .posts-list-title{
+      font-size: 2rem;
+      font-weight: bold;}
+    .post-author-date{font-size: 0.8rem;}
+  /* Tags_page*/
+    .tag-page-title{
+      font-size: 2rem;
+      font-weight: bold;}
+    .tag-letter-sort{font-size: 1rem;}
   /* home_footer */
     .text-muted{font-size: 0.8rem;}
+  /* post_delete */
+    .delete-confirmation{font-size: 1rem;}
+  /* mentions legales */
+    .mentions-title{font-size: 2rem;}
 
 /* Color */
   /* home_header */
-    a.home-header-title, a.home-header-title:link, a.home-header-title:visited{
-    color: #1A172A;}
-  /* posts_list */
-    a.link-in-black, a.link-in-black:link, a.link-in-black:visited{
-    color: #000000;}
-    a.link-in-purple, a.link-in-purple:link, a.link-in-purple:visited{
-    color: #423B68;}
-    a.posts-list-title, a.posts-list-title:link, a.posts-list-title:visited{
-    color: #000000;}
-
-    /* home_navbar */
-    .form-control {
-        border: 1px solid #AAA4CC;}
+    a.home-header-title, a.home-header-title:link, a.home-header-title:visited{color: var(--color-4);}
+    .home-header-subtitle{color: var(--color-3);}
+  /* home_navbar */
+    .navbar{background-color: #FFFFFF;}
+    .nav-font{color: var(--color-5);}
+    .form-control{
+        border: 1px solid var(--color-2);}
     .btn-outline-secondary {
-        color: #423B68;
-        border-color: #AAA4CC;}
-
-  /* home_footer */
-    a.home-footer-link, a.home-footer-link:link, a.home-footer-link:visited {
-    color: #000000;}
-  /* post_detail */
-    .btn-light {
-      color: #423B68;
-      background-color: #AAA4CC;
-      border-color: #AAA4CC;}
+        color: var(--color-2);
+        border-color: var(--color-2);}
+    .btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active, .btn-outline-secondary.active, .open>.dropdown-toggle.btn-outline-secondary {
+      color: #FFFFFF;
+      background-color: var(--color-2);
+      border-color: var(--color-2);}
+    /* posts_list */
+      a.link-in-black, a.link-in-black:link, a.link-in-black:visited{color: #000000;}
+      a.link-color-5, a.link-color-5:link, a.link-color-5:visited{color: var(--color-5);}
+      .jumbotron{background-color: var(--color-0);}
+      a.posts-list-title, a.posts-list-title:link, a.posts-list-title:visited{color: var(--color-5);}
+      .badge-info {
+        color: #FFFFFF;
+        background-color: var(--color-3);}
 
 
 /* Position */
+  /* general */
+    hr.divider-navbar{
+      margin-top: .1rem;
+      margin-bottom: .1rem;
+      border: 0;
+      border-top: 2px solid var(--color-4);}
   /* home_navbar */
-  .nav-position{
-    align-items: center;
-    display: flex;}
-  .navbar {
-      padding: .5rem;}
+    .nav-position{
+      align-items: center;
+      display: flex;}
+    .navbar{
+      padding: .5rem;
+      border-radius: .5rem;}
   /* home_create */
-  .wmd-panel {
-      margin-left: 0px !important ;
-      margin-right: 0px !important ;
-  }
-  .wmd-panel {
-    width: 100% !important;
-  }
-
+    .wmd-panel {
+      margin-left: 0px !important;
+      margin-right: 0px !important;}
+    .wmd-panel {
+      width: 100% !important;}
   /* posts_list */
     .pagination_syc{text-align: center;}
     .jumbotron{
       margin-bottom: 0.5rem;
-      background-color: #FBFAFC;
-      padding: 0.5rem;}
+      padding: 0.5rem;
+      border-radius: .5rem;}
 
 
 /* MEDIA QUERIES TAGS */

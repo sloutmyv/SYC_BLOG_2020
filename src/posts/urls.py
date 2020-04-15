@@ -23,4 +23,5 @@ urlpatterns = [
     path('article/<slug:slug>/update/', PostUpdateView.as_view(), name='post-update'),
     path('article/<slug:slug>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('permissiondenied/', TemplateView.as_view(template_name="permissiondenied.html"), name="permission-denied"),
+    path('mentionslegales/', TemplateView.as_view(template_name="mentionslegales.html"), name="mentions-legales"),
 ]

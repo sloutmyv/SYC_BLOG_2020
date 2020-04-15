@@ -57,20 +57,20 @@ class PostListView(ListView):
                         Q(content__icontains=query)
                         ).distinct()
         elif author is not None:
-            queryset = super().get_queryset().filter(user__username__iexact=str(author))
+            queryset = super().get_queryset().filter(user__username__iexact=str(author)).order_by('-publish')
         elif private_space is not None and str(private_space) == str(self.request.user):
-            queryset = Post.objects.ofuser(str(private_space))
+            queryset = Post.objects.ofuser(str(private_space)).order_by('-publish')
         elif tag is not None:
-            queryset = super().get_queryset().filter(tags__name__iexact=tag)
+            queryset = super().get_queryset().filter(tags__name__iexact=tag).order_by('-publish')
         else:
-            queryset = super().get_queryset()
+            queryset = super().get_queryset().order_by('-publish')
 
         return queryset
 
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        context['nb_post_published'] = self.get_queryset().count()
+        context['nb_post_published'] = self.get_queryset().count() 
         return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
