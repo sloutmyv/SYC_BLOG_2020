@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # thrid party
     'ckeditor',
+    'ckeditor_uploader',
     'crispy_forms',
     'markdown_deux',
     'taggit',
@@ -141,8 +142,9 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
+        'toolbar': 'full',
         'width': '100%',
         'height': 520,
     }
 }
+CKEDITOR_UPLOAD_PATH = "ckuploads/"

@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from .utils import unique_slug_generator      # Slug generator
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 
 
@@ -14,7 +14,6 @@ from taggit.managers import TaggableManager
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
-        # return super(PostManager, self).filter(user=request.user)
 
     def ofuser(self, auteur, *args, **kwargs):
         return super(PostManager, self).filter(user__username__iexact=auteur)
@@ -23,10 +22,10 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
     slug  = models.SlugField(null=True, blank=True, editable=False, verbose_name="Slug") #necesite une instance title.
-    content = RichTextField()
+    content = RichTextUploadingField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)         # everytime
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)           # initialy
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
