@@ -20,7 +20,7 @@
           {% for tag in post.tags.all %}
             <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info titillium-text">{{ tag }}</a>
           {% endfor %}
-          <p class="lead">{{ post.get_markdown|truncatechars_html:150 }}</p>
+          <p class="lead">{{ post.content|safe|truncatechars_html:150 }}</p>
         </div>
       </div>
       <hr class="divider-inter-posts">

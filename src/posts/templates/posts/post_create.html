@@ -10,6 +10,7 @@
 {% block content %}
 <div class="container titillium-font">
   <form action="." method="post">{% csrf_token %}
+    {{ form.media }}
     {{ form|crispy }}
     <input type="submit" value="Save">
   </form>

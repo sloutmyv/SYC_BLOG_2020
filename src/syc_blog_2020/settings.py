@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # thrid party
+    'ckeditor',
     'crispy_forms',
     'markdown_deux',
-    'pagedown',
+    # 'pagedown',
     'taggit',
     # local
     'posts',

@@ -36,7 +36,7 @@
           </div>
           </br>
           <p class='post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
-          <p class="lead">{{ post.get_markdown }}</p>
+          <p class="lead">{{ post.content|safe }}</p>
         </div>
       </div>
 

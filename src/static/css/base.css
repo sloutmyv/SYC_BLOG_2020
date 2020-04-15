@@ -79,10 +79,7 @@
       padding: .5rem;
       border-radius: .5rem;}
   /* home_create */
-    .wmd-panel {
-      margin-left: 0px !important;
-      margin-right: 0px !important;}
-    .wmd-panel {
+    .django-ckeditor-widget{
       width: 100% !important;}
   /* posts_list */
     .pagination_syc{text-align: center;}

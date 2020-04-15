@@ -5,8 +5,10 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from .utils import unique_slug_generator      # Slug generator
-from markdown_deux import markdown
+from ckeditor.fields import RichTextField
+# from markdown_deux import markdown
 from taggit.managers import TaggableManager
+
 
 
 # Modifying Post.objects.all()
@@ -22,7 +24,7 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
     slug  = models.SlugField(null=True, blank=True, editable=False, verbose_name="Slug") #necesite une instance title.
-    content = models.TextField()
+    content = RichTextField()
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)         # everytime
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)           # initialy
     tags = TaggableManager()
@@ -38,9 +40,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("posts:post-detail", kwargs={"slug": self.slug})
 
-    def get_markdown(self):
-        content = self.content
-        return mark_safe(markdown(content))
+    # def get_markdown(self):
+    #     content = self.content
+    #     return mark_safe(markdown(content))
 
 
 

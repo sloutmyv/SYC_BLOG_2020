@@ -35,6 +35,8 @@
     .delete-confirmation{font-size: 1rem;}
   /* mentions legales */
     .mentions-title{font-size: 2rem;}
+    .mentions-subtitle{font-size: 1.2rem;}
+    .raw-text{font-size: .8rem;}
 
 /* Color */
   /* home_header */
