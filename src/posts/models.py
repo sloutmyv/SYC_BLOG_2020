@@ -6,7 +6,6 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from .utils import unique_slug_generator      # Slug generator
 from ckeditor.fields import RichTextField
-# from markdown_deux import markdown
 from taggit.managers import TaggableManager
 
 
@@ -39,13 +38,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("posts:post-detail", kwargs={"slug": self.slug})
-
-    # def get_markdown(self):
-    #     content = self.content
-    #     return mark_safe(markdown(content))
-
-
-
 
 ### Signals de création des slugs
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):

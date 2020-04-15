@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'crispy_forms',
     'markdown_deux',
-    # 'pagedown',
     'taggit',
     # local
     'posts',
@@ -139,3 +138,11 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'width': '100%',
+        'height': 520,
+    }
+}

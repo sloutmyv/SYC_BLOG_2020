@@ -79,8 +79,7 @@
       padding: .5rem;
       border-radius: .5rem;}
   /* home_create */
-    .django-ckeditor-widget{
-      width: 100% !important;}
+    .django-ckeditor-widget{width:100%;}
   /* posts_list */
     .pagination_syc{text-align: center;}
     .jumbotron{
