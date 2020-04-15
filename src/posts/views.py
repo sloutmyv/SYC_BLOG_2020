@@ -70,7 +70,7 @@ class PostListView(ListView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        context['nb_post_published'] = self.get_queryset().count() 
+        context['nb_post_published'] = self.get_queryset().count()
         return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
@@ -114,7 +114,7 @@ class TagsView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(TagsView, self).get_context_data(*args, **kwargs)
-        context['tags'] = Tag.objects.all().order_by('name')
+        context['tags'] = Tag.objects.all().exclude(name__iexact="draft").order_by('name')
         all_tags =Tag.objects.all().values()
         liste_lettres = []
         for i in all_tags:
