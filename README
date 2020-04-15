@@ -27,13 +27,14 @@ DJANGO cmdline
 
 A faire
 - Mise en page / Identité visuelle / couleurs
-- Nombre de clique sur l'article
-- Commentaire / boutton like
-- ne pas affichier les tags des drafts dans all tag
+- CKEDITOR
+- Nombre de clique sur un article
+- Commentaires / boutton like
+- Ne pas affichier les tags des drafts dans all tag
 - Référencement
+- Gestion des images en pagedown
 - Refaire le logo
-- image in pagedpwn
 - Mise en forme de l'admin
-- ecrire le premier article
+- Ecrire le premier article
 - Bitcoin
 - voir comment mettre en ligne
