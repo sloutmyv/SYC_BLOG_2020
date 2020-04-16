@@ -16,9 +16,7 @@
               </a>
               &nbsp;
             {% endif %}
-            <a href="{% url 'posts-app:posts-list' %}">
-              <button type="button" class="btn btn-outline-secondary my-2 my-sm-0">Back to post lists</button>
-            </a>
+
           </div>
           </br>
           <div class="row justify-content-center">
@@ -40,6 +38,11 @@
           <div class="row justify-content-center">
             <div class="fb-like" data-href="https://www.mysite.com" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
             &nbsp;<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+          <div class="row justify-content-center">
+            <a href="{% url 'posts-app:posts-list' %}">
+              <button type="button" class="btn btn-outline-secondary my-2 my-sm-0">Back to post lists</button>
+            </a>
           </div>
         </div>
       </div>
