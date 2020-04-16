@@ -43,6 +43,20 @@
           </div>
         </div>
       </div>
+      <br>
+      <hr>
+      <br>
+      <div class="container comments-section titillium-font">
+        <h1 class="comments-section-title"><b>Commentaire(s)</b></h1>
+        {% for comment in comments %}
+          <div class="jumbotron jumbotron-fluid jumbotron-comment">
+            <blockquote class="blockquote">
+              <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
+              <p class="mb-0 comments-content">{{ comment.content }}</p>
+            </blockquote>
+          </div>
+        {% endfor %}
+      </div>
 
 
     {% endblock content %}

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'markdown_deux',
     'taggit',
     # local
+    'comments',
     'posts',
 
 ]

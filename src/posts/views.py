@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.utils import timezone
 from taggit.models import Tag
 
-
+from comments.models import Comment
 from .forms import PostModelForm
 from .models import Post
 
@@ -28,12 +28,13 @@ class PostDetailView(DetailView):
     template_name = "posts/post_detail.html"
     model = Post
 
-
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         if self.object.draft or self.object.publish > timezone.now().date():
             if self.request.user != self.object.user:
                 raise Http404
+        context['comments'] = self.object.comments
+
         return context
 
 class PostListView(ListView):

@@ -8,7 +8,7 @@ from .utils import unique_slug_generator      # Slug generator
 from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 
-
+from comments.models import Comment
 
 # Modifying Post.objects.all()
 class PostManager(models.Manager):
@@ -37,6 +37,12 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("posts:post-detail", kwargs={"slug": self.slug})
+
+    @property
+    def comments(self):
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        return qs
 
 ### Signals de création des slugs
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):

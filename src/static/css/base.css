@@ -18,7 +18,7 @@
     .home-header-title{font-size: 3rem;}
     .home-header-subtitle{font-size: 1.2rem;}
   /* home_navbar */
-    .nav-font, .navbar-brand{font-size: 1rem;}
+    .nav-font .navbar-brand{font-size: 1rem;}
   /* posts_list */
     .posts-list-title{
       font-size: 2rem;
@@ -37,6 +37,9 @@
     .mentions-title{font-size: 2rem;}
     .mentions-subtitle{font-size: 1.2rem;}
     .raw-text{font-size: .8rem;}
+  /* commentaires */
+    .comments-section-title{font-size: 1.2rem;}
+    .comments-content{font-size: 0.8rem;}
 
 /* Color */
   /* home_header */
@@ -62,6 +65,12 @@
       .badge-info {
         color: #FFFFFF;
         background-color: var(--color-3);}
+    /* commentaires */
+      .jumbotron-comment{
+        border-style:solid;
+        border-color: var(--color-2);
+        border-width:1px;}
+
 
 
 /* Position */
