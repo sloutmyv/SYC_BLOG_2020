@@ -1,13 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.edit import FormMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse
 from django.utils import timezone
 from taggit.models import Tag
 
+from comments.form import CommentForm
 from comments.models import Comment
 from .forms import PostModelForm
 from .models import Post
@@ -24,9 +27,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.save_m2m()
         return HttpResponseRedirect(obj.get_absolute_url())
 
-class PostDetailView(DetailView):
+class PostDetailView(FormMixin, DetailView):
     template_name = "posts/post_detail.html"
     model = Post
+    form_class = CommentForm
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,8 +38,43 @@ class PostDetailView(DetailView):
             if self.request.user != self.object.user:
                 raise Http404
         context['comments'] = self.object.comments
-
+        initial_data = {
+                "user": self.request.user,
+                "content_type": self.object.get_content_type,
+                "object_id": self.object.id
+                }
+        context['comment_form'] = CommentForm(initial=initial_data)
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.save()
+            c_type = form.cleaned_data.get("content_type")
+            content_type = ContentType.objects.get_for_model(model=c_type)
+            obj_id = form.cleaned_data.get("object_id")
+            content_data = form.cleaned_data.get("content")
+            user = form.cleaned_data.get("user")
+            print(user)
+            new_comment, created = Comment.objects.get_or_create(
+                                    user = user,
+                                    content_type=content_type,
+                                    object_id=obj_id,
+                                    content=content_data,
+            )
+            if created:
+                print("sucess")
+            return HttpResponseRedirect(self.object.get_absolute_url())
+        else:
+            return self.form_invalid(form)
+
+    # def form_valid(self, form):
+    #     form.save()
+    #     return super(PostDetailView, self).form_valid(form)
+
+
 
 class PostListView(ListView):
     template_name = "posts/posts_list.html"

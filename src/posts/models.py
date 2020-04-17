@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import pre_save                                   # pour la création des signaux
 from django.urls import reverse
@@ -43,6 +44,14 @@ class Post(models.Model):
         instance = self
         qs = Comment.objects.filter_by_instance(instance)
         return qs
+
+    @property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type
+
+
 
 ### Signals de création des slugs
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
