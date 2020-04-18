@@ -32,18 +32,19 @@ class PostDetailView(FormMixin, DetailView):
     model = Post
     form_class = CommentForm
 
+
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         if self.object.draft or self.object.publish > timezone.now().date():
             if self.request.user != self.object.user:
                 raise Http404
         context['comments'] = self.object.comments
+
         initial_data = {
-                "user": self.request.user,
-                "content_type": self.object.get_content_type,
-                "object_id": self.object.id
-                }
-        context['comment_form'] = CommentForm(initial=initial_data)
+                        "user": self.request.user,
+                        "content_type": self.object.get_content_type,
+                        "object_id": self.object.id}
+        context['form'] = self.form_class(initial=initial_data)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -51,30 +52,18 @@ class PostDetailView(FormMixin, DetailView):
         form = self.get_form()
         if form.is_valid():
             obj = form.save(commit=False)
+            try:
+                parent_id = int(request.POST.get("parent_id"))
+            except:
+                parent_id = None
+            if parent_id:
+                parent_qs = Comment.objects.filter(id=parent_id)
+                if parent_qs.exists() and parent_qs.count()==1:
+                     obj.parent = parent_qs.first()
             obj.save()
-            c_type = form.cleaned_data.get("content_type")
-            content_type = ContentType.objects.get_for_model(model=c_type)
-            obj_id = form.cleaned_data.get("object_id")
-            content_data = form.cleaned_data.get("content")
-            user = form.cleaned_data.get("user")
-            print(user)
-            new_comment, created = Comment.objects.get_or_create(
-                                    user = user,
-                                    content_type=content_type,
-                                    object_id=obj_id,
-                                    content=content_data,
-            )
-            if created:
-                print("sucess")
             return HttpResponseRedirect(self.object.get_absolute_url())
         else:
             return self.form_invalid(form)
-
-    # def form_valid(self, form):
-    #     form.save()
-    #     return super(PostDetailView, self).form_valid(form)
-
-
 
 class PostListView(ListView):
     template_name = "posts/posts_list.html"

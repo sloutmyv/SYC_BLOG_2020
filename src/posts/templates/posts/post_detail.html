@@ -55,17 +55,20 @@
         <h1 class="comments-section-title"><b>Commentaire(s)</b></h1>
 
         <form method="POST" action="."> {% csrf_token %}
-          {{ comment_form|crispy}}
-          <input type="submit" value="submit "class="btn btn-primary">
+          {{ form|crispy}}
+          <input type="submit" value="Comment" class="btn btn-primary">
         </form>
-
-
 
         {% for comment in comments %}
           <div class="jumbotron jumbotron-fluid jumbotron-comment">
             <blockquote class="blockquote">
               <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=comment.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
               <p class="mb-0 comments-content">{{ comment.content }}</p>
+              <form method="POST" action="."> {% csrf_token %}
+                {{ form|crispy}}
+                <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                <input type="submit" value="Reply" class="btn btn-primary">
+              </form>
             </blockquote>
           </div>
         {% endfor %}
