@@ -3,11 +3,11 @@
 
 
 {% block head_title %} {{ block.super }} | Post {% endblock head_title %}
-  <body>
-    {% block content %}
-      <div class="jumbotron jumbotron-fluid titillium-font">
-        <div class="container post-detail-item">
-          <div class="row justify-content-center">
+<body>
+  {% block content %}
+  <div class="jumbotron jumbotron-fluid titillium-font">
+    <div class="container post-detail-item">
+      <div class="row justify-content-center">
             {% if request.user == object.user  %}
               <a href="{% url 'posts-app:post-update' slug=post.slug %}">
                 <button type="button" class="btn btn-outline-secondary my-2 my-sm-0">Update</button>
@@ -19,61 +19,73 @@
               &nbsp;
             {% endif %}
 
-          </div>
-          </br>
-          <div class="row justify-content-center">
-            <h1 class="display-4 posts-list-title">{{ object.title }}</h1>
-          </div>
-          {% if post.draft %}
-          <div class="row justify-content-center">
-            <h4 style='color:red;'>(Draft)</h4>
-          </div>
-          {% endif %}
-          <div class="row justify-content-center">
-            {% for tag in object.tags.all %}
-              <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
-            {% endfor %}
-          </div>
-          </br>
-          <p class='post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
-          <p class="lead">{{ post.content|safe }}</p>
-          <div class="row justify-content-center">
-            <div class="fb-like" data-href="https://www.mysite.com" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
-            &nbsp;<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-          <div class="row justify-content-center">
-            <a href="{% url 'posts-app:posts-list' %}">
-              <button type="button" class="btn btn-outline-secondary my-2 my-sm-0">Back to post lists</button>
-            </a>
+      </div>
+      </br>
+      <div class="row justify-content-center">
+        <h1 class="display-4 posts-list-title">{{ object.title }}</h1>
+      </div>
+      {% if post.draft %}
+        <div class="row justify-content-center">
+          <h4 style='color:red;'>(Draft)</h4>
+        </div>
+      {% endif %}
+      <div class="row justify-content-center">
+      {% for tag in object.tags.all %}
+        <a href="{% url 'posts-app:posts-list-bytag' tag_url=tag %}" class="mr-1 badge badge-info">{{ tag }}</a>
+      {% endfor %}
+      </div>
+      </br>
+      <p class='post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=post.user %}"><b>{{object.user}}</b></a> le {{object.timestamp|date:"d/m/y"}}</p>
+      <p class="lead">{{ post.content|safe }}</p>
+      <div class="row justify-content-center">
+        <div class="fb-like" data-href="https://www.mysite.com" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
+          &nbsp;<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+      <div class="row justify-content-center">
+          <a href="{% url 'posts-app:posts-list' %}">
+            <button type="button" class="btn btn-outline-secondary my-2 my-sm-0">Back to post lists</button>
+          </a>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div class="container comments-section titillium-font">
+    <h1 class="comments-section-title"><b>Commentaire(s)</b></h1>
+    <form method="POST" action="."> {% csrf_token %}
+      {{ form|crispy}}
+      <input type="submit" value="Comment" class="btn btn-primary">
+    </form>
+
+    {% for comment in comments %}
+    <div class="jumbotron jumbotron-fluid jumbotron-comment">
+      <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=comment.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
+      <p class="mb-0 comments-content">{{ comment.content|linebreaks }}</p>
+      <a class='comment-reply-btn' href="#">Répondre</a>
+      {% if comment.children.count > 0%}
+      <p> {{comment.children.count}} réponse{% if comment.children.count > 1%}s{%endif%} | <a class='comment-replies-btn' href="#">Voir</a></p>
+      {% endif %}
+      </p>
+      <div class="comment-replies" style='display:none;'>
+      {% for child_comment in comment.children %}
+        <div class="container ml-2">
+          <div class="jumbotron jumbotron-fluid jumbotron-comment-replies">
+            <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=child_comment.user %}"><b>{{child_comment.user}}</b></a> le {{child_comment.timestamp|date:"d/m/y"}}</p>
+            <p class="mb-0 comments-content">{{ child_comment.content }}</p>
           </div>
         </div>
+      {% endfor %}
       </div>
-      <br>
-      <hr>
-      <br>
-      <div class="container comments-section titillium-font">
-        <h1 class="comments-section-title"><b>Commentaire(s)</b></h1>
-
+      <div class="comment-reply" style=display:none;>
         <form method="POST" action="."> {% csrf_token %}
           {{ form|crispy}}
-          <input type="submit" value="Comment" class="btn btn-primary">
+          <input type="hidden" name="parent_id" value="{{ comment.id }}">
+          <input type="submit" value="Reply" class="btn btn-primary">
         </form>
-
-        {% for comment in comments %}
-          <div class="jumbotron jumbotron-fluid jumbotron-comment">
-            <blockquote class="blockquote">
-              <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=comment.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
-              <p class="mb-0 comments-content">{{ comment.content }}</p>
-              <form method="POST" action="."> {% csrf_token %}
-                {{ form|crispy}}
-                <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                <input type="submit" value="Reply" class="btn btn-primary">
-              </form>
-            </blockquote>
-          </div>
-        {% endfor %}
       </div>
-
-
-    {% endblock content %}
-  </body>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock content %}
+</body>

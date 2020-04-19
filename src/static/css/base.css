@@ -71,6 +71,11 @@
         border-color: var(--color-2);
         border-width:1px;}
 
+      .jumbotron-comment-replies{
+        border-style:solid;
+        border-color: var(--color-1);
+        border-width:1px;}
+
 
 
 /* Position */
