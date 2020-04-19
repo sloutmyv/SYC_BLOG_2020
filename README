@@ -26,13 +26,16 @@ DJANGO cmdline
 
 
 A faire
-- Mise en page / Identité visuelle / couleurs
+- nettoyer et identer l'ensemble des fichiers
+- regler le fadetoggle jquery
+- faire admin claire
+- sécurisé les forms
 - Nombre de clique sur un article
-- Commentaires / boutton like
+- boutton like
 - Référencement
 - search button
 - sécurisé le form
 - Mise en forme de l'admin
 - Ecrire le premier article
-- Bitcoin
+- implementer adresse public Bitcoin
 - voir comment mettre en ligne
