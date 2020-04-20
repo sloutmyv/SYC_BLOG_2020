@@ -65,7 +65,6 @@
       {% if comment.children.count > 0%}
       <span>{{comment.children.count}} réponse{% if comment.children.count > 1%}s{%endif%}</span> | <a id="comment_replies_btn_{{ forloop.counter }}" href="#">Voir</a>
       {% endif %}
-      </p>
       <div id="comment_replies_{{ forloop.counter }}" class="comment-replies" style="display:none;">
         {% for child_comment in comment.children %}
           <div class="container ml-2">
