@@ -47,19 +47,22 @@
       $(".content-markdown").each(function(){
         var content = $(this).text()
         var markedContent = marked(content)
-      $(this).html(markedContent)
+        $(this).html(markedContent)
       })
       $(".post-detail-item img").each(function(){
         $(this).addClass("img-fluid rounded")
       })
       $('a[id^="comment_replies_btn_"]').click(function(event){
         event.preventDefault();
+        console.log("ok");
         var more_Content = $(this).siblings('div[id^="comment_replies_"]');
+        console.log(more_Content);
         more_Content.fadeToggle();
       })
       $('a[id^="comment_reply_btn_"]').click(function(event){
         event.preventDefault();
         var more_Content = $(this).siblings('div[id^="comment_reply_"]');
+        console.log(more_Content);
         more_Content.fadeToggle();
       })
     })

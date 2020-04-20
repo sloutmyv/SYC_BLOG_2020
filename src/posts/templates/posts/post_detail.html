@@ -61,22 +61,22 @@
     <div class="jumbotron jumbotron-fluid jumbotron-comment">
       <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=comment.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
       <p class="mb-0 comments-content">{{ comment.content|linebreaks }}</p>
-      <a id="comment_reply_btn_{{ forloop.counter }}" class='comment-reply-btn' href="#">Répondre</a>
+      <a id="comment_reply_btn_{{ forloop.counter }}" class='comment-reply-btn' href="#">Répondre</a><br>
       {% if comment.children.count > 0%}
-      <p> {{comment.children.count}} réponse{% if comment.children.count > 1%}s{%endif%} | <a id="comment_replies_btn_{{ forloop.counter }}" class='comment-replies-btn' href="#">Voir</a></p>
+      <span>{{comment.children.count}} réponse{% if comment.children.count > 1%}s{%endif%}</span> | <a id="comment_replies_btn_{{ forloop.counter }}" href="#">Voir</a>
       {% endif %}
       </p>
-      <div id="comment_replies_{{ forloop.counter }}" class="comment-replies" style='display:none;'>
-      {% for child_comment in comment.children %}
-        <div class="container ml-2">
-          <div class="jumbotron jumbotron-fluid jumbotron-comment-replies">
-            <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=child_comment.user %}"><b>{{child_comment.user}}</b></a> le {{child_comment.timestamp|date:"d/m/y"}}</p>
-            <p class="mb-0 comments-content">{{ child_comment.content }}</p>
+      <div id="comment_replies_{{ forloop.counter }}" class="comment-replies" style="display:none;">
+        {% for child_comment in comment.children %}
+          <div class="container ml-2">
+            <div class="jumbotron jumbotron-fluid jumbotron-comment-replies">
+              <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=child_comment.user %}"><b>{{child_comment.user}}</b></a> le {{child_comment.timestamp|date:"d/m/y"}}</p>
+              <p class="mb-0 comments-content">{{ child_comment.content }}</p>
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
       </div>
-      <div id="comment_reply_{{ forloop.counter }}" class="comment-reply" style=display:none;>
+      <div id="comment_reply_{{ forloop.counter }}" class="comment-reply" style="display:none;">
         <form method="POST" action="."> {% csrf_token %}
           {{ form|crispy}}
           <input type="hidden" name="parent_id" value="{{ comment.id }}">
