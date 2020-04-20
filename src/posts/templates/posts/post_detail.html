@@ -18,7 +18,6 @@
               </a>
               &nbsp;
             {% endif %}
-
       </div>
       </br>
       <div class="row justify-content-center">
@@ -62,12 +61,12 @@
     <div class="jumbotron jumbotron-fluid jumbotron-comment">
       <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=comment.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
       <p class="mb-0 comments-content">{{ comment.content|linebreaks }}</p>
-      <a class='comment-reply-btn' href="#">Répondre</a>
+      <a id="comment_reply_btn_{{ forloop.counter }}" class='comment-reply-btn' href="#">Répondre</a>
       {% if comment.children.count > 0%}
-      <p> {{comment.children.count}} réponse{% if comment.children.count > 1%}s{%endif%} | <a class='comment-replies-btn' href="#">Voir</a></p>
+      <p> {{comment.children.count}} réponse{% if comment.children.count > 1%}s{%endif%} | <a id="comment_replies_btn_{{ forloop.counter }}" class='comment-replies-btn' href="#">Voir</a></p>
       {% endif %}
       </p>
-      <div class="comment-replies" style='display:none;'>
+      <div id="comment_replies_{{ forloop.counter }}" class="comment-replies" style='display:none;'>
       {% for child_comment in comment.children %}
         <div class="container ml-2">
           <div class="jumbotron jumbotron-fluid jumbotron-comment-replies">
@@ -77,7 +76,7 @@
         </div>
       {% endfor %}
       </div>
-      <div class="comment-reply" style=display:none;>
+      <div id="comment_reply_{{ forloop.counter }}" class="comment-reply" style=display:none;>
         <form method="POST" action="."> {% csrf_token %}
           {{ form|crispy}}
           <input type="hidden" name="parent_id" value="{{ comment.id }}">
