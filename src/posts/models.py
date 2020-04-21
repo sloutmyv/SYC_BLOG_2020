@@ -20,16 +20,16 @@ class PostManager(models.Manager):
         return super(PostManager, self).filter(user__username__iexact=auteur)
 
 class Post(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=120)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE,verbose_name="Auteur")
+    title = models.CharField(max_length=120,verbose_name="Article(s)")
     slug  = models.SlugField(null=True, blank=True, editable=False, verbose_name="Slug") #necesite une instance title.
     content = RichTextUploadingField(blank=True, null=True)
-    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)         # everytime
-    updated = models.DateTimeField(auto_now=True, auto_now_add=False)           # initialy
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True,verbose_name="Écrit le")         # everytime
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False,verbose_name="Mise à jour le")           # initialy
     tags = TaggableManager(blank=True)
 
     draft = models.BooleanField(default=False)
-    publish = models.DateField(auto_now=False, auto_now_add=False)
+    publish = models.DateField(auto_now=False, auto_now_add=False,verbose_name="Publié le")
 
     objects = PostManager() # could call it another way but Post.objets.all()
 

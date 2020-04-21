@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ["title","timestamp","updated"]
-    list_filter = ["updated"]
+    list_display = ["title","user","draft","publish","timestamp","updated"]
+    list_filter = ["publish"]
     search_fields = ["title", "content"]
+    ordering=['-publish']
     class Meta:
         model = Post
 

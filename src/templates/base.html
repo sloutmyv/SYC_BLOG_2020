@@ -56,14 +56,16 @@
         event.preventDefault();
         console.log("ok");
         var more_Content = $(this).siblings('div[id^="comment_replies_"]');
-        console.log(more_Content);
         more_Content.fadeToggle();
       })
       $('a[id^="comment_reply_btn_"]').click(function(event){
         event.preventDefault();
         var more_Content = $(this).siblings('div[id^="comment_reply_"]');
-        console.log(more_Content);
         more_Content.fadeToggle();
+      })
+      $('.post_comments_link').click(function(event){
+        event.preventDefault();
+        $(".post_comments").fadeToggle();
       })
     })
   </script>
