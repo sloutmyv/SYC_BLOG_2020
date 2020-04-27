@@ -63,6 +63,9 @@
             <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=comment.user %}"><b>{{comment.user}}</b></a> le {{comment.timestamp|date:"d/m/y"}}</p>
             <p class="mb-0 comments-content">{{ comment.content|linebreaks }}</p>
             <a id="comment_reply_btn_{{ forloop.counter }}" class='comment-reply-btn link-color-5' href="#"><b>Répondre</b></a>
+            {% if request.user == comment.user  %}
+            <a class='comment-reply-btn link-color-5' href="{% url 'comments-app:comment-delete' id=comment.id %}"> | Delete</a>
+            {% endif %}
             {% if comment.children.count > 0%}
               <span class="comment-reply-btn"> | {{comment.children.count}} réponse{% if comment.children.count > 1 %}s{% endif %}</span> | <a id="comment_replies_btn_{{ forloop.counter }}" class="link-color-5 comment-reply-btn" href="#"><b>Voir</b></a>
             {% endif %}
@@ -80,6 +83,9 @@
                   <div class="jumbotron jumbotron-fluid jumbotron-comment-replies">
                     <p class='mb-0 post-author-date'>By <a class="link-color-5" href="{% url 'posts-app:posts-list-author' author=child_comment.user %}"><b>{{child_comment.user}}</b></a> le {{child_comment.timestamp|date:"d/m/y"}}</p>
                     <p class="mb-0 comments-content">{{ child_comment.content }}</p>
+                    {% if request.user == child_comment.user  %}
+                    <a class='comment-reply-btn link-color-5' href="{% url 'comments-app:comment-delete' id=child_comment.id %}">Delete this comment</a>
+                    {% endif %}
                   </div>
                 </div>
               {% endfor %}

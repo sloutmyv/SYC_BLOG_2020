@@ -23,6 +23,7 @@ from posts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('posts.urls', namespace='posts-app')),
+    path('', include('comments.urls', namespace='comments-app')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 

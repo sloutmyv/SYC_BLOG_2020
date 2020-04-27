@@ -26,6 +26,7 @@ DJANGO cmdline
 
 
 A faire
+- comment delete renvoyer à la page de l'article concerné avec le slug
 - nettoyer et identer l'ensemble des fichiers
 - faire admin claire
 - sécurisé les forms
